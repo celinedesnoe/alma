@@ -1,4 +1,4 @@
-import type { Payments } from "@/types/payments";
+import type { Payments } from "../types/payments";
 
 const API_URL: string = "http://localhost:3001";
 
