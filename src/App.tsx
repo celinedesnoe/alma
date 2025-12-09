@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import { fetchPayments } from "./services/payments";
+import { fetchPayments } from "@/services/payments";
 
 function App() {
   const [count, setCount] = useState(0);

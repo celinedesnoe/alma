@@ -1,4 +1,4 @@
-import { State, type Payments } from "../types/payments";
+import { State, type Payments } from "@/types/payments";
 import { fetchAPI } from "./payments";
 import * as paymentsApi from "./payments";
 
