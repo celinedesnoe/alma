@@ -6,7 +6,9 @@ import type {
   StripeSCARepresentation,
 } from "./common";
 
-export interface PaymentsCard {
+export type PaymentMethod = unknown;
+
+export interface PaymentDetailCard {
   id: string;
   brand: string;
   iin: string;
@@ -18,17 +20,12 @@ export interface PaymentsCard {
   verified: boolean;
   psp: string;
   psp_representations: {
-    stripe_sca: StripeSCARepresentation;
+    stripe_sca?: StripeSCARepresentation;
+    [provider: string]: unknown;
   };
 }
 
-interface Order {
-  id: string;
-  created: number;
-  merchant_reference: string;
-}
-
-export interface Payments {
+export interface PaymentDetail {
   id: string;
   created: number;
   state: PaymentState;
@@ -55,14 +52,14 @@ export interface Payments {
   merchant_website: string | null;
   merchant_email: string[];
   merchant_phone: string | null;
-  customer: Customer<PaymentsCard>;
+  customer: Customer<PaymentDetailCard>;
   recovery: unknown | null;
   refunds: unknown[];
   requirements: unknown[];
-  preferred_payment_method: string;
+  preferred_payment_method: string | null;
   payment_method_providers: Record<string, string>;
-  orders: Order[];
+  orders: unknown[];
   return_url: string;
-  logo_url: string;
+  logo_url: string | null;
   checkout_ab_tests: unknown[];
 }

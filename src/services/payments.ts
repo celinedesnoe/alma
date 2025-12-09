@@ -1,3 +1,4 @@
+import type { PaymentDetail } from "@/types/payment";
 import type { Payments } from "@/types/payments";
 
 const API_URL: string = "http://localhost:3001";
@@ -21,5 +22,5 @@ export const fetchAPI = async <T>(endpoint: string): Promise<T> => {
 export const fetchPayments = (): Promise<Payments> =>
   fetchAPI<Payments>("/payments");
 
-export const fetchPaymentDetails = (id: string): Promise<Payments> =>
-  fetchAPI<Payments>(`/payments/payment_${id}`);
+export const fetchPaymentDetails = (id: string): Promise<PaymentDetail> =>
+  fetchAPI<PaymentDetail>(`/payments/payment_${id}`);
