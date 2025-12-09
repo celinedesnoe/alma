@@ -23,4 +23,4 @@ export const fetchPayments = (): Promise<Payments> =>
   fetchAPI<Payments>("/payments");
 
 export const fetchPaymentDetails = (id: string): Promise<PaymentDetail> =>
-  fetchAPI<PaymentDetail>(`/payments/payment_${id}`);
+  fetchAPI<PaymentDetail>(`/payment/payment_${id}`);

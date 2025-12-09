@@ -66,7 +66,7 @@ describe("fetchPaymentDetails", () => {
     const id = "123";
     await paymentsApi.fetchPaymentDetails(id);
 
-    expect(spy).toHaveBeenCalledWith(`/payments/payment_${id}`);
+    expect(spy).toHaveBeenCalledWith(`/payment/payment_${id}`);
 
     spy.mockRestore();
   });
