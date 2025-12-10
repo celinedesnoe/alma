@@ -1,5 +1,5 @@
 const ForbiddenPage = () => {
-  return <div>You are not authorized</div>;
+  return <div data-testid="forbidden-page">You are not authorized</div>;
 };
 
 export default ForbiddenPage;

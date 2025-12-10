@@ -1,5 +1,11 @@
 export enum PaymentState {
-  IN_PROGRESS = "in_progress",
+  COMPLETED = "completed",
+  LATE = "late",
+  PENDING = "pending",
+}
+
+export enum InstallmentState {
+  LATE = "late",
   PAID = "paid",
   PENDING = "pending",
 }
@@ -10,7 +16,7 @@ export interface PaymentPlan {
   due_date: number;
   original_due_date: number | null;
   date_paid: number | null;
-  state: PaymentState;
+  state: InstallmentState;
   customer_fee: number;
   customer_interest: number;
   customer_can_postpone_until: string | null;

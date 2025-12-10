@@ -1,13 +1,9 @@
 import { type Payments } from "@/types/payments";
 import { fetchAPI } from "./payments";
 import * as paymentsApi from "./payments";
-import { mockPayments } from "@/fixtures/payments";
+import { paymentsFixture } from "@/fixtures/payments";
 
 describe("fetchAPI", () => {
-  beforeEach(() => {
-    global.fetch = jest.fn();
-  });
-
   afterEach(() => {
     jest.resetAllMocks();
   });
@@ -15,11 +11,11 @@ describe("fetchAPI", () => {
   it("should return data when fetchAPI is successful", async () => {
     (global.fetch as jest.Mock).mockResolvedValue({
       ok: true,
-      json: jest.fn().mockResolvedValue(mockPayments),
+      json: jest.fn().mockResolvedValue(paymentsFixture),
     });
 
     const data = await fetchAPI<Payments>("/payments");
-    expect(data).toEqual(mockPayments);
+    expect(data).toEqual(paymentsFixture);
     expect(global.fetch).toHaveBeenCalledWith("http://localhost:3001/payments");
   });
 

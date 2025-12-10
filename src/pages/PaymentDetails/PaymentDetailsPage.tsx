@@ -10,7 +10,11 @@ const PaymentDetailsPage = () => {
     fetchPaymentDetails(paymentId || "");
   }, [paymentId]);
 
-  return <div>This is Payment Detail page for {paymentId}</div>;
+  return (
+    <div data-testid="payment-details-page">
+      This is Payment Detail page for {paymentId}
+    </div>
+  );
 };
 
 export default PaymentDetailsPage;

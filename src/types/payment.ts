@@ -25,7 +25,7 @@ export interface PaymentDetailCard {
   };
 }
 
-export interface PaymentDetail {
+export interface PaymentDetails {
   id: string;
   created: number;
   state: PaymentState;

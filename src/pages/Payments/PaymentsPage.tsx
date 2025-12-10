@@ -7,7 +7,7 @@ const PaymentsPage = () => {
     fetchPayments();
   }, []);
 
-  return <div>This is Payments page</div>;
+  return <div data-testid="payments-page">This is Payments page</div>;
 };
 
 export default PaymentsPage;
