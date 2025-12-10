@@ -2,6 +2,7 @@ import { formatCurrency } from "@/helpers/currency";
 import { fetchPayments } from "@/services/payments";
 import type { Payment } from "@/types/payments";
 import useSWR from "swr";
+import PaymentCard from "@/components/PaymentCard/PaymentCard";
 
 const PaymentsPage = () => {
   const { data, error, isLoading } = useSWR("/payments", fetchPayments);
@@ -26,11 +27,11 @@ const PaymentsPage = () => {
     return (
       <div
         data-testid="payments-page"
-        className="w-full px-8 py-4 md:w-2/3 lg:w-1/2 lg:px-24 lg:py-16"
+        className="w-full px-8 py-4 lg:px-24 lg:py-16"
       >
         <h1 className="mt-8 mb-8 text-3xl">Your payments</h1>
 
-        <div className="flex flex-col rounded-lg bg-orange-100 px-3 py-6">
+        <div className="mb-8 flex w-full flex-col rounded-lg bg-orange-100 px-8 py-4 md:w-2/3 lg:w-1/2">
           <h2 className="text-l">Your total amount left to pay:</h2>
           <p className="text-2xl font-extrabold">
             {formatCurrency(total_amount_left_to_pay)}
@@ -38,9 +39,8 @@ const PaymentsPage = () => {
         </div>
         <ul>
           {payments.map((payment: Payment) => (
-            //TODO: Create a card component
             <li key={payment.id}>
-              <div>{payment.id}</div>
+              <PaymentCard payment={payment} />
             </li>
           ))}
         </ul>

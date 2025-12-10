@@ -1,7 +1,7 @@
 import { PaymentState } from "@/types/common";
-import { type Payments } from "@/types/payments";
+import { type Payment } from "@/types/payments";
 
-export const paymentsFixture: Payments[] = [
+export const paymentsFixture: Payment[] = [
   {
     id: "payment_1",
     created: 123456,
