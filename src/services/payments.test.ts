@@ -26,7 +26,7 @@ describe("fetchAPI", () => {
     });
 
     await expect(fetchAPI<Payments>("/payments")).rejects.toThrow(
-      "HTTP error! status: 404"
+      "Failed to fetch /payments: 404 undefined",
     );
   });
 
@@ -34,7 +34,7 @@ describe("fetchAPI", () => {
     (global.fetch as jest.Mock).mockRejectedValue(new Error("Network error"));
 
     await expect(fetchAPI<Payments>("/payments")).rejects.toThrow(
-      "Network error"
+      "Network error",
     );
   });
 });

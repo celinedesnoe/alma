@@ -1,7 +1,7 @@
 import { PaymentState } from "@/types/common";
-import { type Payment } from "@/types/payments";
+import { type Payment, type Payments } from "@/types/payments";
 
-export const paymentsFixture: Payment[] = [
+export const paymentsListFixture: Payment[] = [
   {
     id: "payment_1",
     created: 123456,
@@ -63,3 +63,8 @@ export const paymentsFixture: Payment[] = [
     checkout_ab_tests: [],
   },
 ];
+
+export const paymentsFixture: Payments = {
+  total_amount_left_to_pay: 45000,
+  payments: paymentsListFixture,
+};
