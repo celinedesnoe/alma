@@ -28,7 +28,7 @@ interface Order {
   merchant_reference: string;
 }
 
-export interface Payments {
+export interface Payment {
   id: string;
   created: number;
   state: PaymentState;
@@ -65,4 +65,9 @@ export interface Payments {
   return_url: string;
   logo_url: string;
   checkout_ab_tests: unknown[];
+}
+
+export interface Payments {
+  total_amount_left_to_pay: number;
+  payments: Payment[];
 }
