@@ -13,11 +13,11 @@ createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
     <StrictMode>
       <Routes>
-        <Route path="/" element={<Navigate to="/payments" replace />} />
-        <Route path="/payments" element={<PaymentsPage />} />
         <Route path="/payments/:paymentId" element={<PaymentDetailsPage />} />
+        <Route path="/payments" element={<PaymentsPage />} />
+        <Route path="/" element={<Navigate to="/payments" replace />} />
         <Route path="/403" element={<ForbiddenPage />} />
-        <Route path="/*" element={<NotFoundPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </StrictMode>
   </BrowserRouter>

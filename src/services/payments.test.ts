@@ -4,10 +4,6 @@ import * as paymentsApi from "./payments";
 import { paymentsFixture } from "@/fixtures/payments";
 
 describe("fetchAPI", () => {
-  beforeEach(() => {
-    global.fetch = jest.fn();
-  });
-
   afterEach(() => {
     jest.resetAllMocks();
   });
