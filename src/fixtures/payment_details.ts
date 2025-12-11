@@ -1,5 +1,19 @@
-import { InstallmentState, PaymentState } from "@/types/common";
+import { InstallmentState, PaymentState, type PaymentPlan } from "@/types/common";
 import type { PaymentDetails } from "@/types/payment";
+
+export const paymentPlanFixture: PaymentPlan = {
+  id: "installment_121FwSn1rq3nQo1VFFnlaapwiSjbt2qBmV",
+  purchase_amount: 12500,
+  due_date: 1750841657,
+  original_due_date: null,
+  date_paid: 1750841694,
+  state: InstallmentState.PAID,
+  customer_fee: 900,
+  customer_interest: 0,
+  customer_can_postpone_until: null,
+  customer_cannot_postpone_reason: null,
+  used_payment_method: "card",
+};
 
 export const paymentDetailsFixture: PaymentDetails = {
   id: "payment_121FwSk1IpNiGOXBhhbz17OUoERYj1Uwsz",

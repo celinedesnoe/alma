@@ -11,10 +11,10 @@ export const findNextDueDate = (
     return { formattedDate: null, state: null };
   }
 
-  // We prioritize finding installments in this order:
-  // 1. Late installments — most urgent to show
-  // 2. Pending installments — upcoming payments
-  // 3. Paid installments — meaning all others are settled
+  // For each paymentPlan, we want to find in this order the installment with
+  // 1. Late state (even if the date is in the past)
+  // 2. Pending state (which would mean there is no late state before)
+  // 3. Paid state (which would mean there is no late or pending state before)
   const priorityStates = [
     InstallmentState.LATE,
     InstallmentState.PENDING,
