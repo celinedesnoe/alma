@@ -7,14 +7,14 @@ import { paymentsFixture } from "./fixtures/payments";
 import { paymentDetailsFixture } from "./fixtures/payment_details";
 import useSWR from "swr";
 
-jest.spyOn(paymentsApi, "fetchPayments").mockResolvedValue(paymentsFixture);
-jest
-  .spyOn(paymentsApi, "fetchPaymentDetails")
-  .mockResolvedValue(paymentDetailsFixture);
+vi.spyOn(paymentsApi, "fetchPayments").mockResolvedValue(paymentsFixture);
+vi.spyOn(paymentsApi, "fetchPaymentDetails").mockResolvedValue(
+  paymentDetailsFixture,
+);
 
-jest.mock("swr");
+vi.mock("swr");
 
-const mockUseSWR = jest.mocked(useSWR);
+const mockUseSWR = vi.mocked(useSWR);
 
 const defaultUseSWRState = {
   data: null,
@@ -26,7 +26,7 @@ const defaultUseSWRState = {
 };
 
 describe("Router tests", () => {
-  test("redirects / to /payments", () => {
+  it("redirects / to /payments", () => {
     mockUseSWR.mockReturnValue({
       ...defaultUseSWRState,
       data: paymentsFixture,
@@ -36,7 +36,7 @@ describe("Router tests", () => {
     expect(screen.getByTestId("payments-page")).toBeInTheDocument();
   });
 
-  test("/payments renders PaymentsPage", () => {
+  it("/payments renders PaymentsPage", () => {
     mockUseSWR.mockReturnValue({
       ...defaultUseSWRState,
       data: paymentsFixture,
@@ -46,7 +46,7 @@ describe("Router tests", () => {
     expect(screen.getByTestId("payments-page")).toBeInTheDocument();
   });
 
-  test("/payments/:paymentId renders PaymentDetailsPage", () => {
+  it("/payments/:paymentId renders PaymentDetailsPage", () => {
     mockUseSWR.mockReturnValue({
       ...defaultUseSWRState,
       data: paymentDetailsFixture,
@@ -56,12 +56,12 @@ describe("Router tests", () => {
     expect(screen.getByTestId("payment-details-page")).toBeInTheDocument();
   });
 
-  test("/403 renders ForbiddenPage", () => {
+  it("/403 renders ForbiddenPage", () => {
     renderWithRouter(["/403"]);
     expect(screen.getByTestId("forbidden-page")).toBeInTheDocument();
   });
 
-  test("unknown route renders NotFoundPage", () => {
+  it("unknown route renders NotFoundPage", () => {
     renderWithRouter(["/some/random/path"]);
     expect(screen.getByTestId("not-found-page")).toBeInTheDocument();
   });

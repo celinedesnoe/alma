@@ -1,29 +1,32 @@
 import { type Payments } from "@/types/payments";
 import { fetchAPI } from "./payments";
 import * as paymentsApi from "./payments";
-import { paymentsFixture } from "@/fixtures/payments";
+
+let fetchMock: ReturnType<typeof vi.spyOn>;
+
+beforeEach(() => {
+  fetchMock = vi.spyOn(global, "fetch").mockResolvedValue({
+    ok: true,
+    status: 200,
+    json: async () => ({ data: "mocked" }),
+  } as unknown as Response);
+});
+
+afterEach(() => {
+  vi.restoreAllMocks();
+});
 
 describe("fetchAPI", () => {
-  afterEach(() => {
-    jest.resetAllMocks();
-  });
-
   it("should return data when fetchAPI is successful", async () => {
-    (global.fetch as jest.Mock).mockResolvedValue({
-      ok: true,
-      json: jest.fn().mockResolvedValue(paymentsFixture),
-    });
-
     const data = await fetchAPI<Payments>("/payments");
-    expect(data).toEqual(paymentsFixture);
+    expect(data).toEqual({ data: "mocked" });
     expect(global.fetch).toHaveBeenCalledWith("http://localhost:3001/payments");
   });
 
   it("should throw an error on HTTP error response", async () => {
-    (global.fetch as jest.Mock).mockResolvedValue({
-      ok: false,
-      status: 404,
-    });
+    fetchMock = vi
+      .spyOn(global, "fetch")
+      .mockResolvedValue({ ok: false, status: 404 } as unknown as Response);
 
     await expect(fetchAPI<Payments>("/payments")).rejects.toThrow(
       "Failed to fetch /payments: 404 undefined",
@@ -31,7 +34,9 @@ describe("fetchAPI", () => {
   });
 
   it("should throw an error on fetch rejection", async () => {
-    (global.fetch as jest.Mock).mockRejectedValue(new Error("Network error"));
+    fetchMock = vi
+      .spyOn(global, "fetch")
+      .mockRejectedValue(new Error("Network error"));
 
     await expect(fetchAPI<Payments>("/payments")).rejects.toThrow(
       "Network error",
@@ -41,29 +46,19 @@ describe("fetchAPI", () => {
 
 describe("fetchPayments", () => {
   it("should call fetchAPI with /payments", async () => {
-    const spy = jest
-      .spyOn(paymentsApi, "fetchAPI")
-      .mockResolvedValue({} as Payments);
-
     await paymentsApi.fetchPayments();
 
-    expect(spy).toHaveBeenCalledWith("/payments");
-
-    spy.mockRestore();
+    expect(fetchMock).toHaveBeenCalledWith("http://localhost:3001/payments");
   });
 });
 
 describe("fetchPaymentDetails", () => {
   it("should call fetchAPI with /payments/payment_{id}", async () => {
-    const spy = jest
-      .spyOn(paymentsApi, "fetchAPI")
-      .mockResolvedValue({} as Payments);
-
     const id = "123";
     await paymentsApi.fetchPaymentDetails(id);
 
-    expect(spy).toHaveBeenCalledWith(`/payment/payment_${id}`);
-
-    spy.mockRestore();
+    expect(fetchMock).toHaveBeenCalledWith(
+      `http://localhost:3001/payment/payment_${id}`,
+    );
   });
 });
