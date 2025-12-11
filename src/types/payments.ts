@@ -63,7 +63,7 @@ export interface Payment {
   payment_method_providers: Record<string, string>;
   orders: Order[];
   return_url: string;
-  logo_url: string;
+  logo_url: string | null;
   checkout_ab_tests: unknown[];
 }
 

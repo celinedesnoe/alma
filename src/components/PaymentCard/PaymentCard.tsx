@@ -1,20 +1,21 @@
 import { formatCurrency } from "@/helpers/currency";
 import { findNextDueDate } from "@/helpers/installment";
-import { InstallmentState } from "@/types/common";
 import type { Payment } from "@/types/payments";
+import StateMessage from "../StateMessage/StateMessage";
 interface PaymentCardProps {
   payment: Payment;
 }
 
 const PaymentCard = ({ payment }: PaymentCardProps) => {
-  const { logo_url, merchant_display_name, payment_plan, purchase_amount, id } =
-    payment;
+  const {
+    logo_url = "./logo.sv",
+    merchant_display_name,
+    payment_plan,
+    purchase_amount,
+    id,
+  } = payment;
 
   const { formattedDate, state } = findNextDueDate(payment_plan);
-
-  const isPending = state === InstallmentState.PENDING;
-  const isLate = state === InstallmentState.LATE;
-  const isPaid = state === InstallmentState.PAID;
 
   return (
     <a
@@ -28,23 +29,11 @@ const PaymentCard = ({ payment }: PaymentCardProps) => {
       <div className="w-full">
         <div className="text-black-900 mb-4 flex flex-col justify-between md:flex-row">
           <h3 className="font-semibold">{merchant_display_name}</h3>
-          <div>{formatCurrency(purchase_amount)}</div>
+          <strong data-testid="payment-amount">
+            {formatCurrency(purchase_amount)}
+          </strong>
         </div>
-        {isPending && (
-          <p className="text-sm text-gray-700">
-            Your next installment is {formattedDate}
-          </p>
-        )}
-        {isLate && (
-          <p className="text-sm text-red-700">
-            Your next installment was {formattedDate}
-          </p>
-        )}
-        {isPaid && (
-          <p className="text-sm text-green-700">
-            You have paid all installments!
-          </p>
-        )}
+        <StateMessage state={state} date={formattedDate} />
       </div>
     </a>
   );
