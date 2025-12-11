@@ -20,6 +20,7 @@ const PaymentCard = ({ payment }: PaymentCardProps) => {
     <a
       className="mb-8 flex w-full cursor-pointer items-center rounded-md border border-gray-100 px-4 py-4 shadow-md hover:bg-gray-200"
       href={`/payments/${id}`}
+      data-testid="payment-card"
     >
       <div className="mr-8">
         <img alt="" src={logo_url ?? "./logo.svg"} width="48" height="48" />

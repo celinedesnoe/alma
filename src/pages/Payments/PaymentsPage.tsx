@@ -14,7 +14,7 @@ const PaymentsPage = () => {
 
   // TODO: Create a Error Page
   if (error) {
-    return <div data-testid="error">{error}</div>;
+    return <div data-testid="error">Error</div>;
   }
 
   if (!data) {
@@ -33,7 +33,10 @@ const PaymentsPage = () => {
 
         <div className="mb-8 flex w-full flex-col rounded-lg bg-orange-100 px-8 py-4 md:w-2/3 lg:w-1/2">
           <h2 className="text-l">Your total amount left to pay:</h2>
-          <p className="text-2xl font-extrabold">
+          <p
+            data-testid="total-amount-left-to-pay"
+            className="text-2xl font-extrabold"
+          >
             {formatCurrency(total_amount_left_to_pay)}
           </p>
         </div>
