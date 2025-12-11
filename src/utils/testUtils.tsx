@@ -6,6 +6,8 @@ export const renderWithRouter = (initialEntries: string[]) => {
   return render(
     <MemoryRouter initialEntries={initialEntries}>
       <AppRoutes />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 };
+
+export const normalizeSpaces = (str: string) => str.replace(/\s/g, " ");
