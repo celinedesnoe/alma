@@ -51,6 +51,6 @@ describe("PaymentCard", () => {
     );
 
     const logo = screen.getByRole("presentation");
-    expect(logo).toHaveAttribute("src", "./logo.svg");
+    expect(logo).toHaveAttribute("src", "/logo.svg");
   });
 });
