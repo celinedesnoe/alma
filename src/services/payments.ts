@@ -9,7 +9,7 @@ export const fetchAPI = async <T>(endpoint: string): Promise<T> => {
 
     if (!res.ok) {
       throw new Error(
-        `Failed to fetch ${endpoint}: ${res.status} ${res.statusText}`
+        `Failed to fetch ${endpoint}: ${res.status} ${res.statusText}`,
       );
     }
 
@@ -24,4 +24,4 @@ export const fetchPayments = (): Promise<Payments> =>
   fetchAPI<Payments>("/payments");
 
 export const fetchPaymentDetails = (id: string): Promise<PaymentDetails> =>
-  fetchAPI<PaymentDetails>(`/payment/payment_${id}`);
+  fetchAPI<PaymentDetails>(`/payment/${id}`);
