@@ -2,6 +2,8 @@ import { useParams } from "react-router";
 
 import { fetchPaymentDetails } from "@/services/payments";
 import useSWR from "swr";
+import BackButton from "@/components/BackButton/BackButton";
+import Layout from "@/Layout";
 
 const PaymentDetailsPage = () => {
   const { paymentId } = useParams();
@@ -22,11 +24,19 @@ const PaymentDetailsPage = () => {
     return null;
   }
 
+  const { merchant_display_name } = data;
+
   // TODO: Add back button
   return (
-    <div data-testid="payment-details-page">
-      This is Payment Detail page for {paymentId}
-    </div>
+    <Layout>
+      <div data-testid="payment-details-page">
+        <BackButton />
+        <h1 className="mt-8 mb-8 text-3xl">
+          Your purchase at {merchant_display_name}
+        </h1>
+        <div>id: {paymentId}</div>
+      </div>
+    </Layout>
   );
 };
 
