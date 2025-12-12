@@ -2,11 +2,11 @@ import { formatCurrency } from "@/helpers/currency";
 import { fetchPayments } from "@/services/payments";
 import type { Payment } from "@/types/payments";
 import useSWR from "swr";
-import PaymentCard from "@/components/PaymentCard/PaymentCard";
-import InfoCard from "@/components/InfoCard/InfoCard";
-import Loading from "@/components/Loading/Loading";
-import Error from "@/components/Error/Error";
-import EmptyState from "@/components/EmptyState/EmptyState";
+import PaymentCard from "@/components/Payments/PaymentCard/PaymentCard";
+import InfoCard from "@/components/Common/InfoCard/InfoCard";
+import Loading from "@/components/Common/Loading/Loading";
+import Error from "@/components/Common/Error/Error";
+import EmptyState from "@/components/Common/EmptyState/EmptyState";
 
 const PaymentsPage = () => {
   const { data, error, isLoading } = useSWR("/payments", fetchPayments);

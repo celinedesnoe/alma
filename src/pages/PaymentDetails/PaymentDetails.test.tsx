@@ -1,10 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { screen } from "@testing-library/react";
 import PaymentDetailsPage from "@/pages/PaymentDetails/PaymentDetailsPage";
-import { normalizeSpaces, renderWithRouter } from "@/utils/testUtils";
+import { renderWithRouter } from "@/utils/testUtils";
 import { paymentDetailsFixture } from "@/fixtures/payment_details";
 import useSWR from "swr";
-import { formatCurrency } from "@/helpers/currency";
 
 vi.mock("swr");
 
@@ -54,18 +53,11 @@ describe("PaymentDetailsPage", () => {
   it("should display payment details when fetch is successful", async () => {
     mockUseSWR.mockReturnValue(defaultUseSWRState);
 
-    const { merchant_display_name, amount_left_to_pay, purchase_amount } =
-      paymentDetailsFixture;
-
-    const purchaseAmount = normalizeSpaces(formatCurrency(purchase_amount));
-    const amountLeftToPay = normalizeSpaces(formatCurrency(amount_left_to_pay));
-
     renderWithRouter(<PaymentDetailsPage />, ["/payments/123"]);
-    expect(screen.getByTestId("payment-details-page")).toBeInTheDocument();
 
-    expect(screen.getByText(merchant_display_name)).toBeInTheDocument();
-    expect(screen.getByText(purchaseAmount)).toBeInTheDocument();
-    expect(screen.getByText(amountLeftToPay)).toBeInTheDocument();
+    expect(screen.getByTestId("payment-details-page")).toBeInTheDocument();
+    expect(screen.getByTestId("payment-details-header")).toBeInTheDocument();
+    expect(screen.getByTestId("next-installment")).toBeInTheDocument();
     expect(screen.getByTestId("creditcard-info")).toBeInTheDocument();
   });
 

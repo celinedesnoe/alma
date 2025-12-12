@@ -177,6 +177,6 @@ export const paymentDetailsFixture: PaymentDetails = {
   orders: [],
   return_url:
     "http://localhost:5173/after_payment?pid=payment_121FwSk1IpNiGOXBhhbz17OUoERYj1Uwsz",
-  logo_url: null,
+  logo_url: "http://logo.com",
   checkout_ab_tests: [],
 };
