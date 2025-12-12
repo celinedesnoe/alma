@@ -32,10 +32,11 @@ describe("PaymentDetailsPage", () => {
 
     renderWithRouter(<PaymentDetailsPage />, ["/payments/123"]);
 
+    expect(screen.getByTestId("empty-state")).toBeInTheDocument();
+
     expect(
       screen.queryByTestId("payment-details-page"),
     ).not.toBeInTheDocument();
-
     expect(screen.queryByTestId("error")).not.toBeInTheDocument();
     expect(screen.queryByTestId("loading")).not.toBeInTheDocument();
   });
@@ -53,14 +54,8 @@ describe("PaymentDetailsPage", () => {
   it("should display payment details when fetch is successful", async () => {
     mockUseSWR.mockReturnValue(defaultUseSWRState);
 
-    const {
-      merchant_display_name,
-      customer: { card },
-      amount_left_to_pay,
-      purchase_amount,
-    } = paymentDetailsFixture;
-
-    const cardText = `${card.brand.toLocaleUpperCase()} - ${card.last4}`;
+    const { merchant_display_name, amount_left_to_pay, purchase_amount } =
+      paymentDetailsFixture;
 
     const purchaseAmount = normalizeSpaces(formatCurrency(purchase_amount));
     const amountLeftToPay = normalizeSpaces(formatCurrency(amount_left_to_pay));
@@ -69,9 +64,9 @@ describe("PaymentDetailsPage", () => {
     expect(screen.getByTestId("payment-details-page")).toBeInTheDocument();
 
     expect(screen.getByText(merchant_display_name)).toBeInTheDocument();
-    expect(screen.getByText(cardText)).toBeInTheDocument();
     expect(screen.getByText(purchaseAmount)).toBeInTheDocument();
     expect(screen.getByText(amountLeftToPay)).toBeInTheDocument();
+    expect(screen.getByTestId("creditcard-info")).toBeInTheDocument();
   });
 
   it("should display an error message when fetch fails", async () => {

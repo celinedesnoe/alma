@@ -30,6 +30,8 @@ describe("PaymentsPage", () => {
 
     render(<PaymentsPage />);
 
+    expect(screen.getByTestId("empty-state")).toBeInTheDocument();
+
     expect(screen.queryByTestId("payments-page")).not.toBeInTheDocument();
     expect(screen.queryByTestId("error")).not.toBeInTheDocument();
     expect(screen.queryByTestId("loading")).not.toBeInTheDocument();

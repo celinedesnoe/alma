@@ -1,6 +1,6 @@
 interface InfoCardProps {
   title: string;
-  value: string | number;
+  value?: string | number;
   valueTestId?: string;
   className?: string; // pour étendre le style
   color?: string;
@@ -19,9 +19,11 @@ const InfoCard = ({
       data-testid="info-card"
     >
       <h2 className="text-l">{title}</h2>
-      <p data-testid={valueTestId} className="text-2xl font-extrabold">
-        {value}
-      </p>
+      {value ? (
+        <p data-testid={valueTestId} className="text-2xl font-extrabold">
+          {value}
+        </p>
+      ) : null}
     </div>
   );
 };
