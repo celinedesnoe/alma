@@ -5,11 +5,14 @@ import { BrowserRouter } from "react-router";
 import "./index.css";
 
 import { AppRoutes } from "./AppRoutes";
+import Layout from "./Layout";
 
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
     <StrictMode>
-      <AppRoutes />
+      <Layout>
+        <AppRoutes />
+      </Layout>
     </StrictMode>
-  </BrowserRouter>
+  </BrowserRouter>,
 );
