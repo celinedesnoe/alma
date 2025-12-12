@@ -30,7 +30,7 @@ describe("PaymentsPage", () => {
 
     render(<PaymentsPage />);
 
-    expect(screen.queryByTestId("loading")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("payments-page")).not.toBeInTheDocument();
     expect(screen.queryByTestId("error")).not.toBeInTheDocument();
     expect(screen.queryByTestId("loading")).not.toBeInTheDocument();
   });
@@ -47,12 +47,11 @@ describe("PaymentsPage", () => {
   });
 
   it("should display payments when fetch is successful", async () => {
-    mockUseSWR.mockReturnValue({
-      ...defaultUseSWRState,
-      data: paymentsFixture,
-    });
+    mockUseSWR.mockReturnValue(defaultUseSWRState);
 
     render(<PaymentsPage />);
+
+    expect(screen.getByTestId("payments-page")).toBeInTheDocument();
 
     expect(screen.getByTestId("total-amount-left-to-pay")).toHaveTextContent(
       "45 000,00 €",
