@@ -43,7 +43,7 @@ describe("CreditCardInfo", () => {
     );
 
     expect(
-      screen.getByText("You will be withdraw automatically on:"),
+      screen.getByText("You will be withdrawn automatically on:"),
     ).toBeInTheDocument();
   });
 

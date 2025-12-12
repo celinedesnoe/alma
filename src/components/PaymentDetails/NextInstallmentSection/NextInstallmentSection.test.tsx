@@ -10,7 +10,7 @@ describe("NextInstallmentSection", () => {
     expect(screen.getByText("Your next installment")).toBeInTheDocument();
 
     expect(
-      screen.getByText(/you will be withdraw automatically on/i),
+      screen.getByText(/you will be withdrawn automatically on/i),
     ).toBeInTheDocument();
     expect(screen.getByText(date)).toBeInTheDocument();
     expect(screen.getByText(date)).toHaveClass("text-orange-600");

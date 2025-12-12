@@ -13,7 +13,7 @@ const CreditCardInfo = ({ card, state }: CreditCardInfoProps) => {
   const isPaid = state === InstallmentState.PAID;
   const description = isPaid
     ? "You have used the card "
-    : "You will be withdraw automatically on: ";
+    : "You will be withdrawn automatically on: ";
 
   return (
     <div
