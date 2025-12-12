@@ -1,6 +1,19 @@
 import { InstallmentState, type PaymentPlan } from "@/types/common";
 import { formatUnixDate } from "@/helpers/date";
 
+/**
+ * Finds the next due installment from a payment plan based on priority.
+ *
+ * Priority order:
+ *   1. Late installments
+ *   2. Pending installments
+ *   3. Paid installments
+ *
+ * @param paymentPlan - An array of installments
+ * @returns An object containing:
+ *   - formattedDate: the due date of the next installment (formatted as a string) or null if none
+ *   - state: the state of the next installment or null if none
+ */
 export const findNextDueDate = (
   paymentPlan: PaymentPlan[],
 ): {
