@@ -1,5 +1,29 @@
-import { InstallmentState, PaymentState, type PaymentPlan } from "@/types/common";
+import {
+  InstallmentState,
+  PaymentState,
+  type PaymentPlan,
+} from "@/types/common";
 import type { PaymentDetails } from "@/types/payment";
+import type { PaymentCard } from "@/types/common";
+
+export const paymentCardFixture: PaymentCard = {
+  id: "card_121FwTG50o8PdyW76sk1LeJCw47NM42n7c",
+  brand: "visa",
+  iin: "400000",
+  country: "FR",
+  created: 1750841686,
+  exp_month: 1,
+  exp_year: 2030,
+  last4: "0003",
+  verified: true,
+  psp: "stripe",
+  psp_representations: {
+    stripe_sca: {
+      customer_id: "cus_SYx0zwvyQlQKPN",
+      payment_method_id: "pm_1Rdp6PJ7ery6I1BqkutGzJPX",
+    },
+  },
+};
 
 export const paymentPlanFixture: PaymentPlan = {
   id: "installment_121FwSn1rq3nQo1VFFnlaapwiSjbt2qBmV",

@@ -43,3 +43,19 @@ export interface StripeSCARepresentation {
   customer_id: string;
   payment_method_id: string;
 }
+
+export interface PaymentCard {
+  id: string;
+  brand: string;
+  iin: string;
+  country: string;
+  created: number;
+  exp_month: number;
+  exp_year: number;
+  last4: string;
+  verified: boolean;
+  psp: string;
+  psp_representations: {
+    stripe_sca: StripeSCARepresentation;
+  };
+}
