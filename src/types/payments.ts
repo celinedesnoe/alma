@@ -1,26 +1,10 @@
 import type {
   Customer,
   Fees,
+  PaymentCard,
   PaymentPlan,
   PaymentState,
-  StripeSCARepresentation,
 } from "./common";
-
-export interface PaymentsCard {
-  id: string;
-  brand: string;
-  iin: string;
-  country: string;
-  created: number;
-  exp_month: number;
-  exp_year: number;
-  last4: string;
-  verified: boolean;
-  psp: string;
-  psp_representations: {
-    stripe_sca: StripeSCARepresentation;
-  };
-}
 
 interface Order {
   id: string;
@@ -55,7 +39,7 @@ export interface Payment {
   merchant_website: string | null;
   merchant_email: string[];
   merchant_phone: string | null;
-  customer: Customer<PaymentsCard>;
+  customer: Customer<PaymentCard>;
   recovery: unknown | null;
   refunds: unknown[];
   requirements: unknown[];

@@ -6,6 +6,7 @@ import * as paymentsApi from "@/services/payments";
 import { paymentsFixture } from "./fixtures/payments";
 import { paymentDetailsFixture } from "./fixtures/payment_details";
 import useSWR from "swr";
+import { AppRoutes } from "./AppRoutes";
 
 vi.spyOn(paymentsApi, "fetchPayments").mockResolvedValue(paymentsFixture);
 vi.spyOn(paymentsApi, "fetchPaymentDetails").mockResolvedValue(
@@ -32,7 +33,7 @@ describe("Router tests", () => {
       data: paymentsFixture,
     });
 
-    renderWithRouter(["/"]);
+    renderWithRouter(<AppRoutes />, ["/"]);
     expect(screen.getByTestId("payments-page")).toBeInTheDocument();
   });
 
@@ -42,7 +43,7 @@ describe("Router tests", () => {
       data: paymentsFixture,
     });
 
-    renderWithRouter(["/payments"]);
+    renderWithRouter(<AppRoutes />, ["/payments"]);
     expect(screen.getByTestId("payments-page")).toBeInTheDocument();
   });
 
@@ -52,17 +53,17 @@ describe("Router tests", () => {
       data: paymentDetailsFixture,
     });
 
-    renderWithRouter(["/payments/123"]);
+    renderWithRouter(<AppRoutes />, ["/payments/123"]);
     expect(screen.getByTestId("payment-details-page")).toBeInTheDocument();
   });
 
   it("/403 renders ForbiddenPage", () => {
-    renderWithRouter(["/403"]);
+    renderWithRouter(<AppRoutes />, ["/403"]);
     expect(screen.getByTestId("forbidden-page")).toBeInTheDocument();
   });
 
   it("unknown route renders NotFoundPage", () => {
-    renderWithRouter(["/some/random/path"]);
+    renderWithRouter(<AppRoutes />, ["/some/random/path"]);
     expect(screen.getByTestId("not-found-page")).toBeInTheDocument();
   });
 });

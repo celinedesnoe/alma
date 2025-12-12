@@ -1,12 +1,12 @@
 import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { AppRoutes } from "@/AppRoutes";
 
-export const renderWithRouter = (initialEntries: string[]) => {
+export const renderWithRouter = (
+  ui: React.ReactNode,
+  initialEntries: string[],
+) => {
   return render(
-    <MemoryRouter initialEntries={initialEntries}>
-      <AppRoutes />
-    </MemoryRouter>,
+    <MemoryRouter initialEntries={initialEntries}>{ui}</MemoryRouter>,
   );
 };
 

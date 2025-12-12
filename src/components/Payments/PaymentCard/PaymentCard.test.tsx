@@ -1,4 +1,3 @@
-import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import PaymentCard from "./PaymentCard";
 import * as installment from "@/helpers/installment";
@@ -51,6 +50,6 @@ describe("PaymentCard", () => {
     );
 
     const logo = screen.getByRole("presentation");
-    expect(logo).toHaveAttribute("src", "./logo.svg");
+    expect(logo).toHaveAttribute("src", "/logo.svg");
   });
 });

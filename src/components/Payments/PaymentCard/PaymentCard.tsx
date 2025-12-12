@@ -1,19 +1,14 @@
 import { formatCurrency } from "@/helpers/currency";
 import { findNextDueDate } from "@/helpers/installment";
 import type { Payment } from "@/types/payments";
-import StateMessage from "../StateMessage/StateMessage";
+import StateMessage from "@/components/Common/StateMessage/StateMessage";
 interface PaymentCardProps {
   payment: Payment;
 }
 
 const PaymentCard = ({ payment }: PaymentCardProps) => {
-  const {
-    logo_url = "./logo.sv",
-    merchant_display_name,
-    payment_plan,
-    purchase_amount,
-    id,
-  } = payment;
+  const { logo_url, merchant_display_name, payment_plan, purchase_amount, id } =
+    payment;
 
   const { formattedDate, state } = findNextDueDate(payment_plan);
 
@@ -24,7 +19,7 @@ const PaymentCard = ({ payment }: PaymentCardProps) => {
       data-testid="payment-card"
     >
       <div className="mr-8">
-        <img alt="" src={logo_url ?? "./logo.svg"} width="48" height="48" />
+        <img alt="" src={logo_url ?? "/logo.svg"} width="48" height="48" />
       </div>
       <div className="w-full">
         <div className="text-black-900 mb-4 flex flex-col justify-between md:flex-row">

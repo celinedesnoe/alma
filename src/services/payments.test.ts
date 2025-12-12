@@ -53,12 +53,12 @@ describe("fetchPayments", () => {
 });
 
 describe("fetchPaymentDetails", () => {
-  it("should call fetchAPI with /payments/payment_{id}", async () => {
+  it("should call fetchAPI with /payments/{id}", async () => {
     const id = "123";
     await paymentsApi.fetchPaymentDetails(id);
 
     expect(fetchMock).toHaveBeenCalledWith(
-      `http://localhost:3001/payment/payment_${id}`,
+      `http://localhost:3001/payment/${id}`,
     );
   });
 });
