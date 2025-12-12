@@ -1,7 +1,7 @@
 import { formatCurrency } from "@/helpers/currency";
 import { findNextDueDate } from "@/helpers/installment";
 import type { Payment } from "@/types/payments";
-import StateMessage from "../StateMessage/StateMessage";
+import StateMessage from "@/components/Common/StateMessage/StateMessage";
 interface PaymentCardProps {
   payment: Payment;
 }
