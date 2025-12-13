@@ -39,6 +39,48 @@ export const paymentPlanFixture: PaymentPlan = {
   used_payment_method: "card",
 };
 
+export const paymentPlanListFixture: PaymentPlan[] = [
+  {
+    id: "installment_abc",
+    purchase_amount: 12500,
+    due_date: 1750841657,
+    original_due_date: null,
+    date_paid: 1750841694,
+    state: InstallmentState.PENDING,
+    customer_fee: 900,
+    customer_interest: 0,
+    customer_can_postpone_until: null,
+    customer_cannot_postpone_reason: null,
+    used_payment_method: "card",
+  },
+  {
+    id: "installment_def",
+    purchase_amount: 12500,
+    due_date: 1750841657,
+    original_due_date: null,
+    date_paid: 1750841694,
+    state: InstallmentState.LATE,
+    customer_fee: 900,
+    customer_interest: 0,
+    customer_can_postpone_until: null,
+    customer_cannot_postpone_reason: null,
+    used_payment_method: "card",
+  },
+  {
+    id: "installment_ghi",
+    purchase_amount: 12500,
+    due_date: 1750841657,
+    original_due_date: null,
+    date_paid: 1750841694,
+    state: InstallmentState.LATE,
+    customer_fee: 900,
+    customer_interest: 0,
+    customer_can_postpone_until: null,
+    customer_cannot_postpone_reason: null,
+    used_payment_method: "card",
+  },
+];
+
 export const paymentDetailsFixture: PaymentDetails = {
   id: "payment_121FwSk1IpNiGOXBhhbz17OUoERYj1Uwsz",
   created: 1750841654,

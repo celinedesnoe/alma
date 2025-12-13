@@ -18,7 +18,7 @@ const CreditCardInfo = ({ card, state }: CreditCardInfoProps) => {
   return (
     <div
       data-testid="creditcard-info"
-      className="rounded border border-gray-100 px-4 py-4 shadow-md"
+      className="mb-4 rounded border border-gray-100 px-4 py-4 shadow-md"
     >
       <h2 className="mb-4 text-xl font-semibold">Your payment method</h2>
       <div>

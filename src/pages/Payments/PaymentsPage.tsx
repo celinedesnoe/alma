@@ -25,6 +25,7 @@ const PaymentsPage = () => {
           title="Your total amount left to pay:"
           value={formatCurrency(total_amount_left_to_pay)}
           valueTestId="total-amount-left-to-pay"
+          className="mb-4"
         />
         <ul>
           {payments.map((payment: Payment) => (

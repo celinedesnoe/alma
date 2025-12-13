@@ -46,3 +46,40 @@ export const findNextDueDate = (
 
   return { formattedDate: null, state: null };
 };
+
+const stateStyles: Record<
+  InstallmentState,
+  { bg: string; badgeClass: string; badgeLabel: string | null }
+> = {
+  [InstallmentState.LATE]: {
+    bg: "bg-red-50",
+    badgeClass: "ml-4 rounded bg-red-800 p-1 text-xs text-white",
+    badgeLabel: "LATE",
+  },
+  [InstallmentState.PAID]: {
+    bg: "bg-green-50",
+    badgeClass: "ml-4 rounded bg-green-800 p-1 text-xs text-white",
+    badgeLabel: "PAID",
+  },
+  [InstallmentState.PENDING]: {
+    bg: "bg-orange-50",
+    badgeClass: "",
+    badgeLabel: null,
+  },
+};
+
+/**
+ * Maps an installment state to its display styles.
+ *
+ * Used by UI components (e.g. payment plan rows) to keep all
+ * Tailwind classes and badge labels for each InstallmentState
+ * in a single place.
+ *
+ * @param state - Installment state (LATE, PENDING, PAID, etc.)
+ * @returns An object containing:
+ *  - bg: background CSS class for the row
+ *  - badgeClass: optional CSS classes for the state badge
+ *  - badgeLabel: optional label displayed inside the badge
+ */
+export const getInstallmentStyles = (state: InstallmentState) =>
+  stateStyles[state];
