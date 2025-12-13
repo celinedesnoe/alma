@@ -21,8 +21,14 @@ describe("PaymentPlanTable", () => {
     const tabContent = screen.getByTestId("payment-plan-tab-content");
 
     expect(
-      within(tabContent).getAllByTestId("installment-state"),
-    ).not.toHaveTextContent(InstallmentState.PAID);
+      within(tabContent)
+        .getAllByTestId("installment-state")
+        .forEach((element) => {
+          expect(element).not.toHaveTextContent(
+            InstallmentState.PAID.toUpperCase(),
+          );
+        }),
+    );
   });
 
   it("shows only paid installments when History tab is clicked", () => {
@@ -34,8 +40,14 @@ describe("PaymentPlanTable", () => {
     const tabContent = screen.getByTestId("payment-plan-tab-content");
 
     expect(
-      within(tabContent).getAllByTestId("installment-state"),
-    ).toHaveTextContent(InstallmentState.PAID);
+      within(tabContent)
+        .getAllByTestId("installment-state")
+        .forEach((element) => {
+          expect(element).toHaveTextContent(
+            InstallmentState.PAID.toUpperCase(),
+          );
+        }),
+    );
   });
 
   it("shows empty message when tab has no installments", () => {

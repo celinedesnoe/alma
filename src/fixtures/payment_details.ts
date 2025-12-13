@@ -72,7 +72,7 @@ export const paymentPlanListFixture: PaymentPlan[] = [
     due_date: 1750841657,
     original_due_date: null,
     date_paid: 1750841694,
-    state: InstallmentState.LATE,
+    state: InstallmentState.PAID,
     customer_fee: 900,
     customer_interest: 0,
     customer_can_postpone_until: null,
