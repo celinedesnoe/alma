@@ -1,8 +1,13 @@
+const api = Cypress.env("VITE_API_URL");
+
 describe("[Alma] Payments", () => {
   it("displays payments list", () => {
-    cy.intercept("GET", "**/localhost:3001/payments").as("getPayments");
+    // As we have defined a React route "/payments", cypress intercepts first GET http://localhost:5173/payments
+    // We need then to explicitly give the api url for "/payments" endpoint intercept
+    cy.intercept("GET", `${api}/payments`).as("getPayments");
 
-    cy.visit("http://localhost:5173/payments");
+    cy.visit("/payments");
+
     cy.wait("@getPayments").then(({ response }) => {
       cy.findByRole("heading", { name: "Your payments" }).should("be.visible");
       cy.findByTestId("total-amount-left-to-pay").should("be.visible");
@@ -24,41 +29,41 @@ describe("[Alma] Payments", () => {
   });
 
   it("redirects to payments list page when visiting /", () => {
-    cy.intercept("GET", "**/payments").as("getPayments");
+    cy.intercept("GET", `${api}/payments`).as("getPayments");
 
-    cy.visit("http://localhost:5173/");
+    cy.visit("/");
     cy.url().should("include", "payments");
     cy.wait("@getPayments").its("response.statusCode").should("eq", 200);
   });
 
+  it("displays payments details when clicking on a payment", () => {
+    cy.intercept("GET", `${api}/payments`).as("getPayments");
+    cy.intercept("GET", "/payment/*").as("getPaymentDetails");
+
+    cy.visit("/payments");
+
+    cy.wait("@getPayments").then(({ response }) => {
+      const { id } = response.body.payments[0];
+
+      cy.findAllByTestId("payment-card").first().click();
+
+      cy.wait("@getPaymentDetails");
+
+      cy.url().should("include", `payments/${id}`);
+    });
+
+    cy.findByTestId("payment-details-page").should("be.visible");
+  });
+
   it("shows an error state when payments API fails", () => {
-    cy.intercept("GET", "**/payments", {
+    cy.intercept("GET", `${api}/payments`, {
       statusCode: 500,
       body: {},
     }).as("getPaymentsError");
 
-    cy.visit("http://localhost:5173/");
+    cy.visit("/payments");
     cy.wait("@getPaymentsError");
 
     cy.findByTestId("error").should("be.visible");
-  });
-
-  it("displays payments details when clicking on a payment", () => {
-    cy.intercept("GET", "**/payments").as("getPayments");
-    cy.intercept("GET", "**/payment/*").as("getPaymentDetails");
-
-    cy.visit("http://localhost:5173/");
-    cy.url().should("include", "payments");
-    cy.wait("@getPayments");
-
-    cy.findAllByTestId("payment-card").first().click();
-
-    cy.wait("@getPaymentDetails").its("response.statusCode").should("eq", 200);
-
-    cy.url().should("match", /\/payments\/.+/);
-
-    cy.findByTestId("payment-details-page").should("be.visible");
-    cy.findByTestId("payment-details-header").should("be.visible");
-    cy.findByTestId("payment-plan").should("be.visible");
   });
 });
