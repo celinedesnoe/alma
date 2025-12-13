@@ -9,9 +9,10 @@ import Loading from "@/components/Common/Loading/Loading";
 import { findNextDueDate } from "@/helpers/installment";
 import CreditCardInfo from "@/components/PaymentDetails/CreditCardInfo/CreditCardInfo";
 import EmptyState from "@/components/Common/EmptyState/EmptyState";
-import { Header } from "@/components/PaymentDetails/Header/Header";
+import Header from "@/components/PaymentDetails/Header/Header";
 import { getInfoCards, getStateCards } from "@/helpers/paymentDetails";
 import NextInstallmentSection from "@/components/PaymentDetails/NextInstallmentSection/NextInstallmentSection";
+import PaymentPlanTable from "@/components/PaymentDetails/PaymentPlan/PaymentPlanTable";
 
 const PaymentDetailsPage = () => {
   const { paymentId } = useParams();
@@ -63,7 +64,7 @@ const PaymentDetailsPage = () => {
 
       <NextInstallmentSection date={formattedDate} />
       <CreditCardInfo card={card} state={state} />
-      <div>PAYMENT PLAN WITH TABS</div>
+      <PaymentPlanTable paymentPlan={payment_plan} />
     </div>
   );
 };

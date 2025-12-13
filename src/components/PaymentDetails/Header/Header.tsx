@@ -5,7 +5,7 @@ interface HeaderProps {
   paymentDetails: PaymentDetails;
 }
 
-export const Header = ({ paymentDetails }: HeaderProps) => {
+const Header = ({ paymentDetails }: HeaderProps) => {
   const {
     logo_url,
     merchant_display_name,
@@ -31,3 +31,5 @@ export const Header = ({ paymentDetails }: HeaderProps) => {
     </div>
   );
 };
+
+export default Header;

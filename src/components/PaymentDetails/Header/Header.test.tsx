@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { Header } from "./Header";
+import Header from "./Header";
 import { paymentDetailsFixture } from "@/fixtures/payment_details";
 import { formatUnixDate } from "@/helpers/date";
 
