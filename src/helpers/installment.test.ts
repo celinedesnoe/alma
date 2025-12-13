@@ -1,5 +1,4 @@
-import { describe, it, expect } from "vitest";
-import { findNextDueDate } from "./installment";
+import { findNextDueDate, getInstallmentStyles } from "./installment";
 import { InstallmentState, type PaymentPlan } from "@/types/common";
 import { paymentPlanFixture } from "@/fixtures/payment_details";
 import { formatUnixDate } from "./date";
@@ -88,5 +87,37 @@ describe("findNextDueDate", () => {
 
     const result = findNextDueDate(paymentPlan);
     expect(result).toEqual({ formattedDate: null, state: null });
+  });
+});
+
+describe("getInstallmentStyles", () => {
+  it("returns styles for LATE installments", () => {
+    const styles = getInstallmentStyles(InstallmentState.LATE);
+
+    expect(styles).toEqual({
+      bg: "bg-red-50",
+      badgeClass: "ml-4 rounded bg-red-800 p-1 text-xs text-white",
+      badgeLabel: "LATE",
+    });
+  });
+
+  it("returns styles for PAID installments", () => {
+    const styles = getInstallmentStyles(InstallmentState.PAID);
+
+    expect(styles).toEqual({
+      bg: "bg-green-50",
+      badgeClass: "ml-4 rounded bg-green-800 p-1 text-xs text-white",
+      badgeLabel: "PAID",
+    });
+  });
+
+  it("returns styles for PENDING installments", () => {
+    const styles = getInstallmentStyles(InstallmentState.PENDING);
+
+    expect(styles).toEqual({
+      bg: "bg-orange-50",
+      badgeClass: "",
+      badgeLabel: null,
+    });
   });
 });

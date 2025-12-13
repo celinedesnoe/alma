@@ -14,6 +14,23 @@ export const formatUnixDate = (timestamp: number): string => {
 };
 
 /**
+ * Converts a UNIX timestamp (in seconds) to a date string in MM/DD/YYYY format.
+ *
+ * @param timestamp - The UNIX timestamp in seconds (e.g., 1699999999)
+ * @returns A string in the format "MM/DD/YYYY"
+ *          Example: "12/11/2025"
+ */
+export const formatUnixDateToMMDDYYYY = (timestamp: number): string => {
+  const date = new Date(timestamp * 1000);
+
+  const month = String(date.getMonth() + 1).padStart(2, "0"); // 0-based
+  const day = String(date.getDate()).padStart(2, "0");
+  const year = date.getFullYear();
+
+  return `${month}/${day}/${year}`;
+};
+
+/**
  * Pads month with a leading zero if it's a single digit (1-9),
  * but leaves already padded or two-digit months untouched.
  * @param month - number or string representing the month
