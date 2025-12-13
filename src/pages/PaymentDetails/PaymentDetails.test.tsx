@@ -59,6 +59,7 @@ describe("PaymentDetailsPage", () => {
     expect(screen.getByTestId("payment-details-header")).toBeInTheDocument();
     expect(screen.getByTestId("next-installment")).toBeInTheDocument();
     expect(screen.getByTestId("creditcard-info")).toBeInTheDocument();
+    expect(screen.getByTestId("payment-plan")).toBeInTheDocument();
   });
 
   it("should display an error message when fetch fails", async () => {
