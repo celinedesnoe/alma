@@ -7,10 +7,13 @@ import { formatUnixDateToMMDDYYYY } from "@/helpers/date";
 import { formatCurrency } from "@/helpers/currency";
 import { getInstallmentStyles } from "@/helpers/installment";
 import { normalizeSpaces } from "@/utils/testUtils";
+import { Tab } from "@/types/tabs";
 
 describe("PaymentPlanTabsContent", () => {
   it("renders 'No installments' when list is empty", () => {
-    render(<PaymentPlanTabsContent paymentPlan={[]} />);
+    render(
+      <PaymentPlanTabsContent paymentPlan={[]} visibleTab={Tab.IN_PROGRESS} />,
+    );
 
     expect(screen.getByText("No installments")).toBeInTheDocument();
   });
@@ -18,7 +21,12 @@ describe("PaymentPlanTabsContent", () => {
   it("renders a list item for each installment", () => {
     const paymentPlan: PaymentPlan = [installmentFixture, installmentFixture];
 
-    render(<PaymentPlanTabsContent paymentPlan={paymentPlan} />);
+    render(
+      <PaymentPlanTabsContent
+        paymentPlan={paymentPlan}
+        visibleTab={Tab.IN_PROGRESS}
+      />,
+    );
 
     const items = screen.getAllByRole("listitem");
     expect(items).toHaveLength(paymentPlan.length);

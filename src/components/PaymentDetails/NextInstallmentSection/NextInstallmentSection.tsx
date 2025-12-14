@@ -9,7 +9,7 @@ const NextInstallmentSection = ({ date }: { date: string | null }) => {
       <h2 className="mb-4 text-xl font-semibold">Your next installment</h2>
       <p>
         You will be withdrawn automatically on{" "}
-        <span className="text-orange-600">{date}</span>
+        <span className="text-orange-700">{date}</span>
       </p>
     </div>
   );

@@ -13,7 +13,7 @@ describe("NextInstallmentSection", () => {
       screen.getByText(/you will be withdrawn automatically on/i),
     ).toBeInTheDocument();
     expect(screen.getByText(date)).toBeInTheDocument();
-    expect(screen.getByText(date)).toHaveClass("text-orange-600");
+    expect(screen.getByText(date)).toHaveClass("text-orange-700");
   });
 
   it("should not render anything if no date is provided", () => {

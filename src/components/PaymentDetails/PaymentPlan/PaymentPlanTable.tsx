@@ -28,8 +28,11 @@ const PaymentPlanTable = ({ paymentPlan }: PaymentPlanProps) => {
       className="mb-4 rounded border border-gray-100 px-4 py-4 shadow-md"
     >
       <h2 className="mb-4 text-xl font-semibold">Your payment plan</h2>
-      <PaymentPlanTabs setVisibleTab={setVisibleTab} />
-      <PaymentPlanTabsContent paymentPlan={tabContent} />
+      <PaymentPlanTabs setVisibleTab={setVisibleTab} visibleTab={visibleTab} />
+      <PaymentPlanTabsContent
+        paymentPlan={tabContent}
+        visibleTab={visibleTab}
+      />
     </div>
   );
 };
