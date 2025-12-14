@@ -1,6 +1,6 @@
 import { padMonth } from "@/helpers/date";
 import { InstallmentState } from "@/types/common";
-import type { PaymentDetailCard } from "@/types/payment";
+import type { PaymentDetailCard } from "@/types/payment_details";
 
 interface CreditCardInfoProps {
   card: PaymentDetailCard | null;

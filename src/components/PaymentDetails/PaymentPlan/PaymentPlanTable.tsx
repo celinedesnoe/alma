@@ -5,7 +5,7 @@ import PaymentPlanTabsContent from "./PaymentPlanTabsContent/PaymentPlanTabsCont
 import { Tab } from "@/types/tabs";
 
 interface PaymentPlanProps {
-  paymentPlan: PaymentPlan[];
+  paymentPlan: PaymentPlan;
 }
 
 const PaymentPlanTable = ({ paymentPlan }: PaymentPlanProps) => {

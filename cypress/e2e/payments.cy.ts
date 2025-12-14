@@ -12,7 +12,6 @@ describe("[Alma] Payments", () => {
       cy.findByRole("heading", { name: "Your payments" }).should("be.visible");
       cy.findByTestId("total-amount-left-to-pay").should("be.visible");
 
-      console.log("response", response);
       cy.findAllByTestId("payment-card").should(
         "have.length",
         response.body.payments.length,

@@ -6,8 +6,6 @@ import type {
   StripeSCARepresentation,
 } from "./common";
 
-export type PaymentMethod = unknown;
-
 export interface PaymentDetailCard {
   id: string;
   brand: string;
@@ -33,7 +31,7 @@ export interface PaymentDetails {
   integration_origin: string | null;
   locale: string;
   country_of_service: string;
-  payment_plan: PaymentPlan[];
+  payment_plan: PaymentPlan;
   purchase_amount: number;
   fees: Fees;
   customer_interest: number;

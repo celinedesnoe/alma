@@ -4,7 +4,7 @@ import { getInstallmentStyles } from "@/helpers/installment";
 import { type PaymentPlan } from "@/types/common";
 
 interface PaymentPlanTabsContentProps {
-  paymentPlan: PaymentPlan[];
+  paymentPlan: PaymentPlan;
 }
 const PaymentPlanTabsContent = ({
   paymentPlan,

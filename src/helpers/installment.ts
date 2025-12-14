@@ -15,7 +15,7 @@ import { formatUnixDate } from "@/helpers/date";
  *   - state: the state of the next installment or null if none
  */
 export const findNextDueDate = (
-  paymentPlan: PaymentPlan[],
+  paymentPlan: PaymentPlan,
 ): {
   formattedDate: string | null;
   state: InstallmentState | null;

@@ -1,4 +1,4 @@
-import type { PaymentDetails } from "@/types/payment";
+import type { PaymentDetails } from "@/types/payment_details";
 import type { Payments } from "@/types/payments";
 
 const API_URL: string = import.meta.env.VITE_API_URL;

@@ -3,10 +3,13 @@ import {
   PaymentState,
   type PaymentPlan,
 } from "@/types/common";
-import type { PaymentDetails } from "@/types/payment";
-import type { PaymentCard } from "@/types/common";
+import type {
+  PaymentDetails,
+  PaymentDetailCard,
+} from "@/types/payment_details";
+import type { Installment } from "@/types/common";
 
-export const paymentCardFixture: PaymentCard = {
+export const paymentCardFixture: PaymentDetailCard = {
   id: "card_121FwTG50o8PdyW76sk1LeJCw47NM42n7c",
   brand: "visa",
   iin: "400000",
@@ -25,7 +28,7 @@ export const paymentCardFixture: PaymentCard = {
   },
 };
 
-export const paymentPlanFixture: PaymentPlan = {
+export const installmentFixture: Installment = {
   id: "installment_121FwSn1rq3nQo1VFFnlaapwiSjbt2qBmV",
   purchase_amount: 12500,
   due_date: 1750841657,
@@ -39,7 +42,7 @@ export const paymentPlanFixture: PaymentPlan = {
   used_payment_method: "card",
 };
 
-export const paymentPlanListFixture: PaymentPlan[] = [
+export const paymentPlanFixture: PaymentPlan = [
   {
     id: "installment_abc",
     purchase_amount: 12500,

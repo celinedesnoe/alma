@@ -1,6 +1,6 @@
 import { findNextDueDate, getInstallmentStyles } from "./installment";
 import { InstallmentState, type PaymentPlan } from "@/types/common";
-import { paymentPlanFixture } from "@/fixtures/payment_details";
+import { installmentFixture } from "@/fixtures/payment_details";
 import { formatUnixDate } from "./date";
 
 describe("findNextDueDate", () => {
@@ -10,19 +10,19 @@ describe("findNextDueDate", () => {
   });
 
   it("should return the first LATE installment", () => {
-    const paymentPlan: PaymentPlan[] = [
+    const paymentPlan: PaymentPlan = [
       {
-        ...paymentPlanFixture,
+        ...installmentFixture,
         due_date: 1672531200,
         state: InstallmentState.LATE,
       },
       {
-        ...paymentPlanFixture,
+        ...installmentFixture,
         due_date: 1672617600,
         state: InstallmentState.LATE,
       },
       {
-        ...paymentPlanFixture,
+        ...installmentFixture,
         due_date: 1672704000,
         state: InstallmentState.PENDING,
       },
@@ -36,19 +36,19 @@ describe("findNextDueDate", () => {
   });
 
   it("should return the first PENDING installment if no LATE installment exists", () => {
-    const paymentPlan: PaymentPlan[] = [
+    const paymentPlan: PaymentPlan = [
       {
-        ...paymentPlanFixture,
+        ...installmentFixture,
         due_date: 1672531200,
         state: InstallmentState.PENDING,
       },
       {
-        ...paymentPlanFixture,
+        ...installmentFixture,
         due_date: 1672531201,
         state: InstallmentState.PENDING,
       },
       {
-        ...paymentPlanFixture,
+        ...installmentFixture,
         due_date: 1672704000,
         state: InstallmentState.PAID,
       },
@@ -62,14 +62,14 @@ describe("findNextDueDate", () => {
   });
 
   it("should return the first PAID installment if no LATE or PENDING installment exists", () => {
-    const paymentPlan: PaymentPlan[] = [
+    const paymentPlan: PaymentPlan = [
       {
-        ...paymentPlanFixture,
+        ...installmentFixture,
         due_date: 1672704000,
         state: InstallmentState.PAID,
       },
       {
-        ...paymentPlanFixture,
+        ...installmentFixture,
         due_date: 1672704001,
         state: InstallmentState.PAID,
       },
@@ -83,7 +83,7 @@ describe("findNextDueDate", () => {
   });
 
   it("should return null if no valid installment exists", () => {
-    const paymentPlan: PaymentPlan[] = [];
+    const paymentPlan: PaymentPlan = [];
 
     const result = findNextDueDate(paymentPlan);
     expect(result).toEqual({ formattedDate: null, state: null });

@@ -1,15 +1,31 @@
 import type {
   Customer,
   Fees,
-  PaymentCard,
   PaymentPlan,
   PaymentState,
+  StripeSCARepresentation,
 } from "./common";
 
 interface Order {
   id: string;
   created: number;
   merchant_reference: string;
+}
+
+interface PaymentCard {
+  id: string;
+  brand: string;
+  iin: string;
+  country: string;
+  created: number;
+  exp_month: number;
+  exp_year: number;
+  last4: string;
+  verified: boolean;
+  psp: string;
+  psp_representations: {
+    stripe_sca: StripeSCARepresentation;
+  };
 }
 
 export interface Payment {
@@ -20,7 +36,7 @@ export interface Payment {
   integration_origin: string | null;
   locale: string;
   country_of_service: string;
-  payment_plan: PaymentPlan[];
+  payment_plan: PaymentPlan;
   purchase_amount: number;
   fees: Fees;
   customer_interest: number;
