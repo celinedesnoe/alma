@@ -2,13 +2,13 @@ import { render, screen, fireEvent, within } from "@testing-library/react";
 import PaymentPlanTable from "./PaymentPlanTable";
 import { InstallmentState, type PaymentPlan } from "@/types/common";
 import {
+  installmentFixture,
   paymentPlanFixture,
-  paymentPlanListFixture,
 } from "@/fixtures/payment_details";
 
 describe("PaymentPlanTable", () => {
   it("renders title and passes in-progress installments by default", () => {
-    render(<PaymentPlanTable paymentPlan={paymentPlanListFixture} />);
+    render(<PaymentPlanTable paymentPlan={paymentPlanFixture} />);
 
     expect(screen.getByTestId("payment-plan")).toBeInTheDocument();
     expect(
@@ -32,7 +32,7 @@ describe("PaymentPlanTable", () => {
   });
 
   it("shows only paid installments when History tab is clicked", () => {
-    render(<PaymentPlanTable paymentPlan={paymentPlanListFixture} />);
+    render(<PaymentPlanTable paymentPlan={paymentPlanFixture} />);
 
     const historyTab = screen.getByRole("button", { name: /history/i });
     fireEvent.click(historyTab);
@@ -52,8 +52,8 @@ describe("PaymentPlanTable", () => {
 
   it("shows empty message when tab has no installments", () => {
     // No PAID installment leads to empty History tab
-    const onlyInProgress: PaymentPlan[] = [
-      { ...paymentPlanFixture, state: InstallmentState.PENDING },
+    const onlyInProgress: PaymentPlan = [
+      { ...installmentFixture, state: InstallmentState.PENDING },
     ];
 
     render(<PaymentPlanTable paymentPlan={onlyInProgress} />);

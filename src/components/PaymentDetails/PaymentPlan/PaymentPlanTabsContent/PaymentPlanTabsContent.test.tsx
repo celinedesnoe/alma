@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 
 import PaymentPlanTabsContent from "./PaymentPlanTabsContent";
 import { type PaymentPlan } from "@/types/common";
-import { paymentPlanFixture } from "@/fixtures/payment_details";
+import { installmentFixture } from "@/fixtures/payment_details";
 import { formatUnixDateToMMDDYYYY } from "@/helpers/date";
 import { formatCurrency } from "@/helpers/currency";
 import { getInstallmentStyles } from "@/helpers/installment";
@@ -16,7 +16,7 @@ describe("PaymentPlanTabsContent", () => {
   });
 
   it("renders a list item for each installment", () => {
-    const paymentPlan: PaymentPlan[] = [paymentPlanFixture, paymentPlanFixture];
+    const paymentPlan: PaymentPlan = [installmentFixture, installmentFixture];
 
     render(<PaymentPlanTabsContent paymentPlan={paymentPlan} />);
 

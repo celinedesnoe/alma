@@ -1,5 +1,5 @@
 import { formatUnixDate } from "@/helpers/date";
-import type { PaymentDetails } from "@/types/payment";
+import type { PaymentDetails } from "@/types/payment_details";
 
 interface HeaderProps {
   paymentDetails: PaymentDetails;
