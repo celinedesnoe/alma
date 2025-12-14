@@ -1,7 +1,7 @@
 import type { PaymentDetails } from "@/types/payment";
 import type { Payments } from "@/types/payments";
 
-const API_URL: string = "http://localhost:3001";
+const API_URL: string = import.meta.env.VITE_API_URL;
 
 export const fetchAPI = async <T>(endpoint: string): Promise<T> => {
   try {
