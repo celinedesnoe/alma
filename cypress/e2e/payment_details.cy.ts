@@ -30,7 +30,7 @@ describe("[Alma] Payment Details", () => {
       expect(inProgressCount).to.be.greaterThan(0);
     });
 
-    cy.findByRole("button", { name: /history/i }).click();
+    cy.findByRole("tab", { name: /history/i }).click();
 
     // We consider whether there are paid installments or not
     cy.findByTestId("payment-plan-tab-content")

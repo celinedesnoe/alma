@@ -34,7 +34,7 @@ describe("PaymentPlanTable", () => {
   it("shows only paid installments when History tab is clicked", () => {
     render(<PaymentPlanTable paymentPlan={paymentPlanFixture} />);
 
-    const historyTab = screen.getByRole("button", { name: /history/i });
+    const historyTab = screen.getByRole("tab", { name: /history/i });
     fireEvent.click(historyTab);
 
     const tabContent = screen.getByTestId("payment-plan-tab-content");
@@ -58,7 +58,7 @@ describe("PaymentPlanTable", () => {
 
     render(<PaymentPlanTable paymentPlan={onlyInProgress} />);
 
-    const historyTab = screen.getByRole("button", { name: /history/i });
+    const historyTab = screen.getByRole("tab", { name: /history/i });
     fireEvent.click(historyTab);
 
     expect(screen.getByTestId("empty-payment-plan")).toBeInTheDocument();

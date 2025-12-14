@@ -6,22 +6,32 @@ describe("PaymentPlanTabs", () => {
   it("renders both tabs", () => {
     const setVisibleTab = vi.fn();
 
-    render(<PaymentPlanTabs setVisibleTab={setVisibleTab} />);
+    render(
+      <PaymentPlanTabs
+        setVisibleTab={setVisibleTab}
+        visibleTab={Tab.IN_PROGRESS}
+      />,
+    );
 
-    expect(
-      screen.getByRole("button", { name: /in progress/i }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole("button", { name: /history/i }),
-    ).toBeInTheDocument();
+    const inProgressTab = screen.getByRole("tab", { name: /in progress/i });
+    const historyTab = screen.getByRole("tab", { name: /history/i });
+
+    expect(inProgressTab).toHaveAttribute("aria-selected", "true");
+    expect(historyTab).toHaveAttribute("aria-selected", "false");
   });
 
   it("calls setVisibleTab with 'in-progress' when In Progress tab is clicked", () => {
     const setVisibleTab = vi.fn();
 
-    render(<PaymentPlanTabs setVisibleTab={setVisibleTab} />);
+    render(
+      <PaymentPlanTabs
+        setVisibleTab={setVisibleTab}
+        visibleTab={Tab.HISTORY}
+      />,
+    );
 
-    const inProgressTab = screen.getByRole("button", { name: /in progress/i });
+    const inProgressTab = screen.getByRole("tab", { name: /in progress/i });
+
     fireEvent.click(inProgressTab);
 
     expect(setVisibleTab).toHaveBeenCalledTimes(1);
@@ -31,9 +41,15 @@ describe("PaymentPlanTabs", () => {
   it("calls setVisibleTab with 'history' when History tab is clicked", () => {
     const setVisibleTab = vi.fn();
 
-    render(<PaymentPlanTabs setVisibleTab={setVisibleTab} />);
+    render(
+      <PaymentPlanTabs
+        setVisibleTab={setVisibleTab}
+        visibleTab={Tab.IN_PROGRESS}
+      />,
+    );
 
-    const historyTab = screen.getByRole("button", { name: /history/i });
+    const historyTab = screen.getByRole("tab", { name: /history/i });
+
     fireEvent.click(historyTab);
 
     expect(setVisibleTab).toHaveBeenCalledTimes(1);
