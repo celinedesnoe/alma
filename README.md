@@ -1,73 +1,84 @@
-# React + TypeScript + Vite
+# Alma – Frontend Technical Test
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains my implementation of the Alma frontend technical test.  
+The goal is to display a list of payments, payment details, and the associated payment schedule using a mocked API.
 
-Currently, two official plugins are available:
+## 🧱 Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React + TS
+- Vite
+- SWR
+- Tailwind
+- Vitest + Testing Library
+- Cypress
 
-## React Compiler
+## 🚀 Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Run the mock API
 
-## Expanding the ESLint configuration
+- Import the provided Mockoon export file using the Open local environment button
+- Run the mock server locally (default: http://localhost:3001)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Install dependencies
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Run the dev server
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+The app is available at `http://localhost:5173`.
+
+The API base URL is configured via `VITE_API_URL` (in `.env` and `cypress.env.json`), for example:
+
+```bash
+VITE_API_URL=http://localhost:3001
+```
+
+Make sure the server is running!
+
+### Run unit tests and coverage
+
+```bash
+npm run test
+npm run coverage
+```
+
+### Run end‑to‑end tests (Cypress)
+
+Headless run:
+
+```bash
+npm run test:e2e
+```
+
+Open Cypress UI:
+
+```bash
+npm run test:e2e:open
+```
+
+## Implemented Features
+
+- List payments
+- View payment details
+- Display payment schedule
+- Loading and error states
+
+## Technical Decisions
+
+- SWR is used for API data fetching with built-in loading, error, and cache handling
+- Business logic is extracted to keep components focused on rendering
+- Cypress is used for a minimal end-to-end flow to validate critical user paths
+
+## 🔍 Possible Improvements
+
+- Strengthen E2E tests (frontend–backend contract): assert that the data displayed in the UI matches the API response
+
+- Improve UI polish and accessibility
+
+- Add CI to automatically run tests
